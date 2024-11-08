@@ -1,0 +1,17 @@
+FROM node:20-alpine
+ENV NODE_ENV=production
+
+WORKDIR /app
+COPY ./public ./public
+COPY ./standalone ./
+
+WORKDIR /app/.next
+COPY ./static ./static
+WORKDIR /app
+
+EXPOSE 3000
+
+ENV HOSTNAME="0.0.0.0"
+ENV PORT=3000
+
+CMD ["node", "server.js"]
